@@ -1,0 +1,19 @@
+{
+	"name": "MurderClassic",
+	"version": "1.0",
+	"sharedassets": "*.*",
+
+	"depends": [
+		"base",
+		"citizen",
+		"rust"
+	],
+
+	"gamemodes": [
+		{
+			"name": "murderclassic",
+			"title": "MurderClassic",
+			"description": "Murder in S&Box."
+		}
+	]
+}
