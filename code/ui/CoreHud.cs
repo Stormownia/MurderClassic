@@ -1,25 +1,34 @@
 using Sandbox;
 using Sandbox.UI;
+using Sandbox.UI.Construct;
+using System;
+using System.Threading.Tasks;
 
-[Library]
-public partial class SandboxHud : HudEntity<RootPanel>
+namespace Murder
 {
-	public SandboxHud()
+	[Library]
+	public partial class Hud : HudEntity<RootPanel>
 	{
-		if ( !IsClient )
-			return;
+		public Hud()
+		{
+			if ( !IsClient )
+				return;
 
-		RootPanel.StyleSheet.Load( "/ui/scss/CoreHud.scss" );
+			RootPanel.StyleSheet.Load( "/ui/scss/CoreHud.scss" );
 
-		//RootPanel.AddChild<Vitals>();
-		//RootPanel.AddChild<NameTags>();
-		//RootPanel.AddChild<CrosshairCanvas>();
-		//RootPanel.AddChild<ChatBox>();
-		//RootPanel.AddChild<VoiceList>();
-		//RootPanel.AddChild<KillFeed>();
-		//RootPanel.AddChild<Scoreboard<ScoreboardEntry>>();
-		//RootPanel.AddChild<InventoryBar>();
-		//RootPanel.AddChild<CurrentTool>();
-		//RootPanel.AddChild<SpawnMenu>();
+			RootPanel.AddChild<RoleInfo>();
+			RootPanel.AddChild<Tips>();
+
+			//RootPanel.AddChild<Vitals>();
+			//RootPanel.AddChild<NameTags>();
+			//RootPanel.AddChild<CrosshairCanvas>();
+			//RootPanel.AddChild<ChatBox>();
+			//RootPanel.AddChild<VoiceList>();
+			//RootPanel.AddChild<KillFeed>();
+			//RootPanel.AddChild<Scoreboard<ScoreboardEntry>>();
+			//RootPanel.AddChild<InventoryBar>();
+			//RootPanel.AddChild<CurrentTool>();
+			//RootPanel.AddChild<SpawnMenu>();
+		}
 	}
 }
