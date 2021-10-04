@@ -373,3 +373,6 @@ code/obj/
 
 # Local History for Visual Studio Code
 .history/
+
+# project files
+.csproj
