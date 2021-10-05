@@ -123,7 +123,7 @@ namespace Murder
 		{
 
 			/*
-			 * RESTART TIMER ON ROUND CHANGE /
+			 * RESTART TIMER ON ROUND CHANGE
 			 */
 
 			if ( TimeToStartRound == 0 )
