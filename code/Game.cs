@@ -19,8 +19,6 @@ namespace Murder
 		[Net]
 		public BaseRound Round { get; private set; }
 
-		//private BaseRound _lastRound;
-
 		[ServerVar( "min_players", Help = "The minimum players required to start." )]
 		private static int MinPlayers { get; set; } = 2;
 
@@ -33,7 +31,7 @@ namespace Murder
 			if ( IsServer )
 			{
 				Hud = new();
-				TimeToStartRound = 5; // dodaæ mo¿liwoœæ pobierania wartoœæi z configu
+				TimeToStartRound = 5; // dodaï¿½ moï¿½liwoï¿½ï¿½ pobierania wartoï¿½ï¿½i z configu
 			}
 		}
 
@@ -59,7 +57,10 @@ namespace Murder
 		{
 			base.ClientJoined( client );
 			var player = new SandboxPlayer( client );
-			player.Respawn();
+
+			if ( Round is WaitingForPlayers )
+				player.Respawn();
+			//else player.MakeSpectator();
 
 			client.Pawn = player;
 
@@ -133,8 +134,10 @@ namespace Murder
 			{
 				if ( TimeToStartRound == 0 ) return;
 				if ( TimeToStartRound == delay )
+				{
 					TimeToStartRoundCountDown();
 					return;
+				}
 			}
 		}
 
@@ -144,6 +147,8 @@ namespace Murder
 			{
 				if ( Round is WaitingForPlayers || Round == null )
 					ChangeRound( new RoundStarting() );
+				if ( Round is RoundStarting && TimeToStartRound == 0 )
+					ChangeRound( new Playing() );
 			}
 			else if ( Round is not WaitingForPlayers )
 			{
